@@ -16,14 +16,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.paritytrading.foundation</groupId>
-      <artifactId>foundation</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.paritytrading.nassau</groupId>
-      <artifactId>nassau-core</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.paritytrading.parity</groupId>
       <artifactId>parity-book</artifactId>
     </dependency>
@@ -34,10 +26,6 @@
     <dependency>
       <groupId>com.paritytrading.parity</groupId>
       <artifactId>parity-util</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.typesafe</groupId>
-      <artifactId>config</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
