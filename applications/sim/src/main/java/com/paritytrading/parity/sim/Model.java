@@ -55,8 +55,8 @@ class Model extends Agent {
         if (currentTimeMillis < sleepUntilMillis)
             return;
 
-        double askPrice = topOfBook.getAskPrice() / 10000.0;
-        double bidPrice = topOfBook.getBidPrice() / 10000.0;
+        double askPrice = topOfBook.getAskPrice() / 100.0;
+        double bidPrice = topOfBook.getBidPrice() / 100.0;
 
         if (uniformDistribution.nextDouble() < config.p()) {
             if (uniformDistribution.nextBoolean()) {
@@ -117,7 +117,7 @@ class Model extends Agent {
     private void enter(byte side, double price) throws IOException {
         ASCII.putLeft(enterOrder.orderId, orderId.next());
         enterOrder.side  = side;
-        enterOrder.price = (long)Math.round(price * 100.0) * 100;
+        enterOrder.price = (long)Math.round(price * 100.0);
 
         getOrderEntry().send(enterOrder);
     }

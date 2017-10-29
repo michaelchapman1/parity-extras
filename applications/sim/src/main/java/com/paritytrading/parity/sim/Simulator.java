@@ -16,7 +16,7 @@ import org.jvirtanen.config.Configs;
 
 class Simulator {
 
-    private static final long PRICE_FACTOR = 10000;
+    private static final long PRICE_FACTOR = 100;
 
     public static void main(String[] args) {
         if (args.length != 1)
