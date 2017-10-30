@@ -16,6 +16,10 @@
 
   <dependencies>
     <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.paritytrading.parity</groupId>
       <artifactId>parity-book</artifactId>
     </dependency>

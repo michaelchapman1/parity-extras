@@ -44,6 +44,11 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.3</version>
+      </dependency>
+      <dependency>
         <groupId>com.paritytrading.parity</groupId>
         <artifactId>parity-book</artifactId>
         <version>${parity.version}</version>

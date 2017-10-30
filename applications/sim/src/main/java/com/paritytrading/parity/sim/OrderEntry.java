@@ -7,6 +7,7 @@ import com.paritytrading.nassau.MessageListener;
 import com.paritytrading.nassau.soupbintcp.SoupBinTCP;
 import com.paritytrading.nassau.soupbintcp.SoupBinTCPClient;
 import com.paritytrading.nassau.soupbintcp.SoupBinTCPClientStatusListener;
+import com.paritytrading.parity.book.Side;
 import com.paritytrading.parity.net.poe.POE;
 import com.paritytrading.parity.net.poe.POEClientListener;
 import com.paritytrading.parity.net.poe.POEClientParser;
@@ -16,7 +17,11 @@ import java.net.StandardSocketOptions;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
+import org.slf4j.*;
+
 class OrderEntry {
+
+    static Logger logger = LoggerFactory.getLogger(OrderEntry.class);
 
     private SoupBinTCPClient transport;
 
@@ -70,6 +75,10 @@ class OrderEntry {
 
         @Override
         public void orderAccepted(POE.OrderAccepted message) {
+            logger.info("POE.OrderAccepted orderId={} side={} price={}",
+                    ASCII.get(message.orderId),
+                    message.side == POE.BUY ? Side.BUY : Side.SELL,
+                    message.price);
         }
 
         @Override
@@ -79,10 +88,13 @@ class OrderEntry {
 
         @Override
         public void orderExecuted(POE.OrderExecuted message) {
+            logger.info("POE.OrderExecuted orderId={} matchNumber={}",
+                    ASCII.get(message.orderId), message.matchNumber);
         }
 
         @Override
         public void orderCanceled(POE.OrderCanceled message) {
+            logger.info("POE.OrderCanceled orderId={}", ASCII.get(message.orderId));
         }
 
     }
