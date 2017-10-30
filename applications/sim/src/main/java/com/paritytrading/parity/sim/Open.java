@@ -15,7 +15,7 @@ class Open extends Agent {
 
         this.enterBuyOrder = new POE.EnterOrder();
 
-        ASCII.putLeft(this.enterBuyOrder.orderId, orderId.next());
+        ASCII.putLeft(this.enterBuyOrder.orderId, OrderId.next());
         this.enterBuyOrder.side       = POE.BUY;
         this.enterBuyOrder.instrument = instrument;
         this.enterBuyOrder.quantity   = bidSize;
@@ -23,7 +23,7 @@ class Open extends Agent {
 
         this.enterSellOrder = new POE.EnterOrder();
 
-        ASCII.putLeft(this.enterSellOrder.orderId, orderId.next());
+        ASCII.putLeft(this.enterSellOrder.orderId, OrderId.next());
         this.enterSellOrder.side       = POE.SELL;
         this.enterSellOrder.instrument = instrument;
         this.enterSellOrder.quantity   = askSize;

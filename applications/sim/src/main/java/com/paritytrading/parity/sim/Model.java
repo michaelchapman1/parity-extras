@@ -115,7 +115,7 @@ class Model extends Agent {
     }
 
     private void enter(byte side, double price) throws IOException {
-        ASCII.putLeft(enterOrder.orderId, orderId.next());
+        ASCII.putLeft(enterOrder.orderId, OrderId.next());
         enterOrder.side  = side;
         enterOrder.price = (long)Math.round(price * 100.0);
 
