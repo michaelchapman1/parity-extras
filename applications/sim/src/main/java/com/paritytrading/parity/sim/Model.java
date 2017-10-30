@@ -6,8 +6,11 @@ import java.io.IOException;
 import java.util.PriorityQueue;
 import java.util.Random;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
+import org.slf4j.*;
 
 class Model extends Agent {
+
+    static Logger logger = LoggerFactory.getLogger(Model.class);
 
     private Config config;
 
@@ -56,7 +59,9 @@ class Model extends Agent {
             return;
 
         double askPrice = topOfBook.getAskPrice() / 100.0;
+        logger.debug("best ask={}", askPrice);
         double bidPrice = topOfBook.getBidPrice() / 100.0;
+        logger.debug("best bid={}", bidPrice);
 
         if (uniformDistribution.nextDouble() < config.p()) {
             if (uniformDistribution.nextBoolean()) {
@@ -64,12 +69,14 @@ class Model extends Agent {
                     double price = price(askPrice - config.l(), askPrice);
 
                     enter(POE.BUY, price, currentTimeMillis);
+                    logger.debug("limit order buy={}", price);
                 }
             } else {
                 if (bidPrice > 0) {
                     double price = price(bidPrice, bidPrice + config.l());
 
                     enter(POE.SELL, price, currentTimeMillis);
+                    logger.debug("limit order sell={}", price);
                 }
             }
         } else {
@@ -77,11 +84,15 @@ class Model extends Agent {
             // As the trading system does not natively support market orders,
             // use marketable limit orders instead.
             if (uniformDistribution.nextBoolean()) {
-                if (askPrice > 0)
+                if (askPrice > 0) {
                     enter(POE.BUY, askPrice + 1.00);
+                    logger.debug("market order buy={}", askPrice);
+                }
             } else {
-                if (bidPrice > 1.00)
+                if (bidPrice > 1.00) {
                     enter(POE.SELL, bidPrice - 1.00);
+                    logger.debug("market order sell={}", askPrice);
+                }
             }
 
         }
