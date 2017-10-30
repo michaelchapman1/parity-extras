@@ -191,38 +191,47 @@ class Model extends Agent {
             this.sigma = sigma;
         }
 
+        /** number of agents */
         public double n() {
             return n;
         }
 
+        /** log of price (mean spread) */
         public double s() {
             return s;
         }
 
+        /** aggregate market order rate */
         public double mu() {
             return mu;
         }
 
+        /** limit order decay rate */
         public double delta() {
             return delta;
         }
 
+        /** order size */
         public long sigma() {
             return sigma;
         }
 
+        /** aggregate limit order rate */
         public double alpha() {
             return (mu() + 2 * delta()) / s();
         }
 
+        /** price cap */
         public double l() {
             return 75 * s();
         }
 
+        /** mean time between orders */
         public double tau() {
             return n() / (mu() + alpha() * l());
         }
 
+        /** probability of limit order (vs market order) */
         public double p() {
             return (alpha() * l()) / (mu() + alpha() * l());
         }
